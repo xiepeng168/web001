@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻</title>
+</head>
+<body>
+    <input type="submit" value="点击显示新闻内容" id="btn">
+    <ul id="ul"></ul> 
+</body>
+</html>
+<script type="text/javascript">
+    var btn=document.getElementById("btn");
+    var oul=document.getElementById("ul");
+    btn.onclick=function()
+    {
+        var xhr=new XMLHttpRequest();
+        xhr.open("GET","newsList.php",true);
+        xhr.send();
+        xhr.onreadystatechange=function()
+        {
+            if(xhr.readyState==4)
+                {
+                    if(xhr.status==200)
+                        {
+                            var T_news=JSON.parse(xhr.responseText);
+                            var html="";
+                            for(var i=0;i<T_news.length;i++)
+                            {
+                                html+='<li><a href="">'+T_news[i].title+'</a>'+T_news[i].date+'</li>';
+                            }
+                            oul.innerHTML=html;
+                        }
+                    else
+                        {
+                            alert("出错了");
+                        }
+                }
+        }
+    }
+</script>

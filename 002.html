@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>菜单</title>
+    <script type="text/javascript" src="js/vue2.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-1.7.2.js"></script>
+    
+</head>
+    <style>
+        #div1{
+            background-color: #E7E7E7;
+             font-size: 20px;
+    
+        }
+        #div11{
+            width: 20%;
+            float: left;
+             height: 600px;
+            background-color:whitesmoke;
+            
+            
+        }
+        a{
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: #327AB5;
+           
+            text-align:center;
+            
+            
+        }
+        #div12{
+            float: right;
+            margin-left: 5px;
+            width: 77%;
+            height: 600px;
+          
+           
+        }
+        .active{
+            background-color:  #327AB5;
+            color: aliceblue;
+        }
+        
+    </style>
+<body>
+    
+    <div id="div1" style="margin-left: 10%; margin-right: 10%; height: 600px;">
+       <div style="background-color: #E0E0E5">周考</div>
+        <div id="div11">
+          
+                 <a  v-for="(value,key,index) in info" @click="aaa(index)" 
+                     :class="{active: index == zhuangtai}" href="#">{{key}}</a>
+              
+           
+        </div>
+        <div id="div12">
+            <div v-for="(value,key,index) in info"  v-if="index==zhuangtai" >周考/{{key}}</div>
+            <div v-for="(value,key,index) in info"  v-if="index==zhuangtai" 
+            style="background-color: #327ab5" >{{key}}</div>
+            <div id="div121" v-for="(value,key,index) in info" v-if="index==zhuangtai"><h1>{{value}}</h1></div>
+            
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: "#div1",
+        data: {
+            info: {
+                首页: '首页内容0000000000000000000000000' ,
+                菜单1: '菜单一内容11111111111111111111111',
+                菜单2: '菜单二内容22222222222222222222',
+                菜单3: '菜单三内容33333333333333333333333'
+            },
+            zhuangtai: 0,
+        },
+        methods: {
+            aaa: function(index) {
+                this.zhuangtai = index;
+                //console.log(this.zhuangtai)
+
+            }
+        }
+
+
+
+    })
+
+</script>
